@@ -90,6 +90,21 @@ class AluguelLivroService {
       throw new Error(err.message);
     }
   }
+
+  async calcularDataDevolucao(dataAlugado, numeroDiasAlugados) {
+    try {
+      if (numeroDiasAlugados < 1) {
+        throw new Error('Numero de dias alugados tem que ser maior que 0');
+      }
+
+      const dataDevolucao = new Date(dataAlugado.setDate(dataAlugado.getDate()));
+      dataDevolucao.setDate(dataDevolucao.getDate() + numeroDiasAlugados);
+
+      return dataDevolucao;
+    } catch (err) {
+      throw new Error(err.message);
+    }
+  }
 }
 
 export default AluguelLivroService;
